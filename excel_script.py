@@ -6,6 +6,10 @@ and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_
 This script requires `pywin32` to be installed in the Python environment you are running the
 script in.
 
+This script also includes an executable file made with pyinstaller in the dist folder just
+copy and paste just outside that folder to test
+
+Author: David Huynh
 """
 import os
 import win32com.client
