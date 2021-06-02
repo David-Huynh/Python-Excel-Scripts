@@ -7,7 +7,7 @@ This script requires `pywin32` to be installed in the Python environment you are
 script in.
 
 This script also includes an executable file made with pyinstaller in the dist folder just
-copy and paste just outside that folder to test
+copy and paste just outside that folder to test with included excel files
 
 Author: David Huynh
 """
