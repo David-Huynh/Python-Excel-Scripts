@@ -39,6 +39,8 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     excel = win32com.client.Dispatch("Excel.Application")
     ##Starts another Excel window in order to access "portable" excel macro
     excel_macro = win32com.client.Dispatch("Excel.Application")
+    excel.Visible = False
+    excel_macro.Visible=False
     macro_workbook = excel_macro.Workbooks.Open(os.path.abspath(macro_file))
     try:
         #Identifies files to be operated on
