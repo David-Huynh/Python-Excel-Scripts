@@ -14,8 +14,8 @@ Author: David Huynh
 import os
 import win32com.client
 
-WORKING_DIRECTORY="./conversion_test_folder"
-DESTINATION_DIRECTORY="./conversion_test_folder/output"
+WORKING_DIRECTORY="./"
+DESTINATION_DIRECTORY="./output"
 
 def xlsx_to_xlsm(working_directory, destination_directory):
     """

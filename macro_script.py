@@ -15,10 +15,10 @@ Author: David Huynh
 import os
 import win32com.client
 
-DIRECTORY="./macro_test_folder"
-MACRO_WORKBOOK_NAME="macro_workbook.xlsm"
+DIRECTORY="./"
+MACRO_WORKBOOK_NAME="script_final_cpi.xlsm"
 MODULE_NAME="Module1"
-MACRO_NAME="bbrefresh"
+MACRO_NAME="BloombergRefresh"
 
 def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     """
