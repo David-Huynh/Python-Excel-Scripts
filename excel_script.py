@@ -3,6 +3,9 @@
 This script operates on all permanent xlsm files in the given DIRECTORY, 
 and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_NAME
 
+MACRO_WORKBOOK must always be placed in the same folder as the script
+DIRECTORY must exist
+
 This script requires `pywin32` to be installed in the Python environment you are running the
 script in.
 
@@ -14,12 +17,12 @@ Author: David Huynh
 import os
 import win32com.client
 
-DIRECTORY="./"
+DIRECTORY="./macro_test_folder"
 MACRO_WORKBOOK_NAME="macro_workbook.xlsm"
 MODULE_NAME="Module1"
 MACRO_NAME="bbrefresh"
 
-def excel_macro_rep(directory, macro_file, module_name, macro_name):
+def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     """
     Operates on all permanent xlsm files in the given directory, 
     using the macro_file workbook and the module/macro_name given
@@ -38,13 +41,13 @@ def excel_macro_rep(directory, macro_file, module_name, macro_name):
     excel = win32com.client.Dispatch("Excel.Application")
     ##Starts another Excel window in order to access "portable" excel macro
     excel_macro = win32com.client.Dispatch("Excel.Application")
-    macro_workbook = excel_macro.Workbooks.Open(os.path.abspath("macro_workbook.xlsm"))
+    macro_workbook = excel_macro.Workbooks.Open(os.path.abspath(macro_file))
     try:
         #Identifies files to be operated on
         for file in os.listdir(directory):
             ##Ignores temporary files created automatically that start with ~ 
-            if file.endswith(".xlsm") and not file.startswith("~") and not file=="macro_workbook.xlsm":
-                workbook = excel.Workbooks.Open(os.path.abspath(file))
+            if file.endswith(".xlsm") and not file.startswith("~") and not file==macro_file:
+                workbook = excel.Workbooks.Open(os.path.abspath(directory+"/"+file))
                 try:
                     ##Runs the macro given by macro_name from macro_file, on the 'excel' application 
                     excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
@@ -60,4 +63,4 @@ def excel_macro_rep(directory, macro_file, module_name, macro_name):
     return True
 
 
-excel_macro_rep(DIRECTORY, MACRO_WORKBOOK_NAME, MODULE_NAME, MACRO_NAME)
+excel_macro_repeated(DIRECTORY, MACRO_WORKBOOK_NAME, MODULE_NAME, MACRO_NAME)
