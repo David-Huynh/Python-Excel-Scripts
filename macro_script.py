@@ -26,7 +26,7 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     using the macro_file workbook and the module/macro_name given
 
     @type directory: str
-    @param directory: the directory of the spreadsheets to be operated on
+    @param directory: the relative directory of the spreadsheets to be operated on
     @type macro_file: str
     @param macro_file: the full filename of the workbook that contains the macro
     @type module_name: str

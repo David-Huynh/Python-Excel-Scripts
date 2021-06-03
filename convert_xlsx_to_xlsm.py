@@ -24,9 +24,9 @@ def xlsx_to_xlsm(working_directory, destination_directory):
     WARNING:Both directories must exist
 
     @type working_directory: str
-    @param working_directory: the directory of the xlsx files to be converted
+    @param working_directory: the relative directory of the xlsx files to be converted
     @type destination_directory: str
-    @param destination_directory: the output directory for the xlsm files
+    @param destination_directory: the relative output directory for the xlsm files
     @return: True if process finished successfully and false otherwise
     """
     ##Starts excel window to operate on
