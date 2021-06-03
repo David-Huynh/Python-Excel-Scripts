@@ -3,7 +3,7 @@
 This script operates on all permanent xlsx files in the given WORKING_DIRECTORY, 
 and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_NAME
 
-WORKING/DESTINATION_DIRECTORY is always relative to the current working directory of the script
+WORKING/DESTINATION_DIRECTORY is always relative to the directory of the script
 and both folders must exist in order for the script to execute properly
 
 This script requires `pywin32` to be installed in the Python environment you are running the
