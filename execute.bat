@@ -1,2 +1,0 @@
-<PATH TO EXECUTABLE>
-pause
