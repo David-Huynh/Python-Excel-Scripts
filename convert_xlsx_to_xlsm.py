@@ -10,6 +10,7 @@ This script requires `pywin32` to be installed in the Python environment you are
 script in.
 
 Author: David Huynh
+Adapted from https://stackoverflow.com/questions/39292179/how-to-convert-xlsm-macro-enabled-excel-file-to-xlsx-using-python for opposite case and for multiple files
 """
 import os
 import win32com.client
