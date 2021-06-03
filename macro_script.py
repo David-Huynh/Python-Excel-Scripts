@@ -39,6 +39,7 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     excel = win32com.client.Dispatch("Excel.Application")
     ##Starts another Excel window in order to access "portable" excel macro
     excel_macro = win32com.client.Dispatch("Excel.Application")
+    ##Starts excel invisible
     excel.Visible = False
     excel_macro.Visible=False
     macro_workbook = excel_macro.Workbooks.Open(os.path.abspath(macro_file))
@@ -56,7 +57,7 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
                     return False
                 workbook.Save()
         excel.Application.Quit()
-        excel_macro.Quit()
+        excel_macro.Application.Quit()
     except:
         print("Invalid directory")
         return False

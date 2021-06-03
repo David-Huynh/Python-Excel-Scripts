@@ -31,6 +31,7 @@ def xlsx_to_xlsm(working_directory, destination_directory):
     """
     ##Starts excel window to operate on
     excel = win32com.client.Dispatch("Excel.Application")
+    ##Starts excel invisible
     excel.Visible = False
     #Identifies files to be converted
     for file in os.listdir(working_directory):
