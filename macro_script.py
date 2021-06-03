@@ -4,7 +4,7 @@ This script operates on all permanent xlsm files in the given DIRECTORY,
 and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_NAME
 
 MACRO_WORKBOOK must always be placed in the same folder as the script
-DIRECTORY must exist
+DIRECTORY must exist for the script to execute properly
 
 This script requires `pywin32` to be installed in the Python environment you are running the
 script in.
