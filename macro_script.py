@@ -42,7 +42,7 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     ##Starts excel invisible
     excel.Visible = False
     excel_macro.Visible=False
-    macro_workbook = excel_macro.Workbooks.Open(os.path.abspath(macro_file))
+    macro_workbook = excel_macro.Workbooks.Open(os.path.abspath("./"+macro_file))
     try:
         #Identifies files to be operated on
         for file in os.listdir(directory):
@@ -56,6 +56,7 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
                     print("Invalid macro workbook or macro")
                     return False
                 workbook.Save()
+        macro_workbook.Save()
         excel.Application.Quit()
         excel_macro.Application.Quit()
     except:
