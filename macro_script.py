@@ -45,9 +45,13 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
             ##Ignores temporary files created automatically that start with ~ 
             if file.endswith(".xlsm") and not file.startswith("~") and not file==macro_file:
                 workbook = excel.Workbooks.Add(os.path.abspath(directory+"/"+file))
+                workbook.Activate()
                 try:
                     ##Runs the macro given by macro_name from macro_file, on the 'excel' application 
-                    excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
+                    if excel.ActiveWorkbook == workbook:
+                        excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
+                    else:
+                        print("ERROR: Wrong active workbook")
                 except:
                     print("Invalid macro workbook or macro")
                     return False
