@@ -37,18 +37,14 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     """
     ##Starts excel window to operate on
     excel = win32com.client.Dispatch("Excel.Application")
-    ##Starts another Excel window in order to access "portable" excel macro
-    excel_macro = win32com.client.Dispatch("Excel.Application")
-    ##Starts excel invisible
-    excel.Visible = False
-    excel_macro.Visible=False
-    macro_workbook = excel_macro.Workbooks.Open(os.path.abspath("./"+macro_file))
+    
+    macro_workbook = excel.Workbooks.Add(os.path.abspath("./"+macro_file))
     try:
         #Identifies files to be operated on
         for file in os.listdir(directory):
             ##Ignores temporary files created automatically that start with ~ 
             if file.endswith(".xlsm") and not file.startswith("~") and not file==macro_file:
-                workbook = excel.Workbooks.Open(os.path.abspath(directory+"/"+file))
+                workbook = excel.Workbooks.Add(os.path.abspath(directory+"/"+file))
                 try:
                     ##Runs the macro given by macro_name from macro_file, on the 'excel' application 
                     excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
@@ -56,9 +52,9 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
                     print("Invalid macro workbook or macro")
                     return False
                 workbook.Save()
-        macro_workbook.Save()
+                workbook.Close()
+        macro_workbook.Close()
         excel.Application.Quit()
-        excel_macro.Application.Quit()
     except:
         print("Invalid directory")
         return False
