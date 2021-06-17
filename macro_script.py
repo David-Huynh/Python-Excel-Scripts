@@ -39,6 +39,7 @@ def excel_macro_repeated(macro_file, module_name, macro_name):
     """
     ##Starts excel window to operate on
     excel = win32com.client.Dispatch("Excel.Application")
+    excel.Visible = False
     try:
         macro_workbook = excel.Workbooks.Open(os.path.abspath("./"+macro_file))
         excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
