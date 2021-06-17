@@ -15,18 +15,20 @@ Author: David Huynh
 import os
 import win32com.client
 
-DIRECTORY="./"
-MACRO_WORKBOOK_NAME="script_final_cpi.xlsm"
+MACRO_WORKBOOK_NAME="macro_workbook.xlsm"
 MODULE_NAME="Module1"
-MACRO_NAME="BloombergRefresh"
+MACRO_NAME="ProcessFiles"
 
-def excel_macro_repeated(directory, macro_file, module_name, macro_name):
+def excel_macro_repeated(macro_file, module_name, macro_name):
     """
-    Operates on all permanent xlsm files in the given directory, 
-    using the macro_file workbook and the module/macro_name given
-
-    @type directory: str
-    @param directory: the relative directory of the spreadsheets to be operated on
+    Activates a macro in the macro_file workbook,
+    that cycles through xls files in a
+    Files directory relative to macro_file
+    Aimed to be used as an efficient way to update bloomberg functions
+    daily
+    Adapted from https://stackoverflow.com/questions/14766238/run-same-excel-macro-on-multiple-excel-files
+    in order to run bloomberg refresh
+    
     @type macro_file: str
     @param macro_file: the full filename of the workbook that contains the macro
     @type module_name: str
@@ -37,32 +39,17 @@ def excel_macro_repeated(directory, macro_file, module_name, macro_name):
     """
     ##Starts excel window to operate on
     excel = win32com.client.Dispatch("Excel.Application")
-    
-    macro_workbook = excel.Workbooks.Add(os.path.abspath("./"+macro_file))
     try:
-        #Identifies files to be operated on
-        for file in os.listdir(directory):
-            ##Ignores temporary files created automatically that start with ~ 
-            if file.endswith(".xlsm") and not file.startswith("~") and not file==macro_file:
-                workbook = excel.Workbooks.Add(os.path.abspath(directory+"/"+file))
-                workbook.Activate()
-                try:
-                    ##Runs the macro given by macro_name from macro_file, on the 'excel' application 
-                    if excel.ActiveWorkbook == workbook:
-                        excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
-                    else:
-                        print("ERROR: Wrong active workbook")
-                except:
-                    print("Invalid macro workbook or macro")
-                    return False
-                workbook.Save()
-                workbook.Close()
+        macro_workbook = excel.Workbooks.Open(os.path.abspath("./"+macro_file))
+        excel.Application.Run("{}!{}.{}".format(macro_file, module_name, macro_name))
+    except:
+        print("ERROR: No file" + os.path.abspath("./"+macro_file) +"found, OR macro_workbook/macro is invalid")
+    finally:
         macro_workbook.Close()
         excel.Application.Quit()
-    except:
-        print("Invalid directory")
-        return False
+        del excel
+    print("Task completed successfully")
     return True
 
 
-excel_macro_repeated(DIRECTORY, MACRO_WORKBOOK_NAME, MODULE_NAME, MACRO_NAME)
+excel_macro_repeated(MACRO_WORKBOOK_NAME, MODULE_NAME, MACRO_NAME)
