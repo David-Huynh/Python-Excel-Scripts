@@ -1,11 +1,9 @@
 """Applying Excel Macro to Multiple XLSM Files
 
-This script operates on all permanent xlsm files in the given DIRECTORY, 
+This script operates on xlsm files
 and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_NAME
 
 MACRO_WORKBOOK must always be placed in the same folder as the script
-DIRECTORY must exist for the script to execute properly and is ALWAYS relative to directory of
-the script
 
 This script requires `pywin32` to be installed in the Python environment you are running the
 script in.
