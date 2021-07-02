@@ -1,6 +1,6 @@
 """Applying Excel Macro to Multiple XLSM Files
 
-This script operates on xlsm files
+This script operates on xlsm files in the 'Files' folder
 and applies the macro identified by MACRO_WORKBOOK_NAME, MODULE_NAME, and MACRO_NAME
 
 MACRO_WORKBOOK must always be placed in the same folder as the script
